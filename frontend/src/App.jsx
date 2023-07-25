@@ -10,6 +10,9 @@ import ProductScreen from './pages/ProductScreen'
 import Footer from './components/Footer'
 import CollectionsPage from './pages/CollectionsPage';
 import CollectionItem from './pages/CollectionItem';
+import About from './pages/About';
+import Wishlist from './pages/Wishlist';
+import ErrorPage from './pages/ErrorPage';
 
 
 
@@ -20,9 +23,12 @@ function App() {
     <>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/wishlist" element={<Wishlist />} />
+        <Route path="/about-us" element={<About />} />
         <Route path="/product/id" element={<ProductScreen />} />
         <Route path="/collections" element={<CollectionsPage />} />
         <Route path="/collections/men" element={<CollectionItem />} />
+        <Route path="*" element={<ErrorPage />} />
         {/* <Route path="/about" element={<About />} />
         <Route path="/services" element={<Services />} />
         <Route path="/portfolio" element={<Portfolio />} />

@@ -7,7 +7,7 @@ const BottomHeader = () => {
 
   return (
     <>
-     <section className="w-full mt-6 mb-20">
+     <section className="w-full mt-1 mb-20">
       <div className="grid grid-cols-1  lg:grid-cols-3 "> 
        <div className="col-span-1 h-full flex flex-col">
 

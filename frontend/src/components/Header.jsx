@@ -21,7 +21,7 @@ const Header = () => {
     <>
     <div className='overflow-hidden'>
     <Swiper {...params}>
-    <header className='w-full h-[90vh] relative yellow'>
+    <header className='w-full max-w-[100%] h-[90vh] relative yellow'>
       <img src={logo2} alt="logo" className='absolute h-full right-24' />
 
       <div className="absolute left-2 fade-right text-white top-16 p-10">
@@ -31,7 +31,7 @@ const Header = () => {
         Spring <br />Collection
       </h1>
 
-      <button className="px-6 tracking-[4px] hover:bg-blue-900 duration-500 hover:text-slate-950 py-4 bg-white text-black text-center uppercase text-sm">Shop Now</button>
+      <button className="px-6 tracking-[4px] font-semibold rounded-md mybtn py-4 bg-red-200  text-center uppercase text-sm">Shop Now</button>
       </div>
 
     </header>
@@ -46,7 +46,7 @@ const Header = () => {
         Spring <br />Collection
       </h1>
 
-      <button className="px-6 tracking-[4px] hover:bg-blue-900 duration-500 hover:text-slate-950 py-4 bg-white text-black text-center uppercase text-sm">Shop Now</button>
+      <button className="px-6 tracking-[4px] font-semibold rounded-md mybtn py-4 bg-zinc-200 text-black text-center uppercase text-sm">Shop Now</button>
       </div>
 
     </header> 

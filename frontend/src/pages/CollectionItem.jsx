@@ -34,8 +34,8 @@ const CollectionItem = () => {
             <Link to='/' className='text-gray-500  text-sm flex gap-2 mr-2 items-center' >
                 Home <SlArrowRight className='text-gray-500 mt-[2px]' size={12} />
             </Link>
-            <Link to='/' className='text-gray-500  text-sm flex gap-2 items-center mr-2' >
-                Accessories <SlArrowRight className='text-gray-500 mt-[2px]' size={12} />
+            <Link to='/collections' className='text-gray-500  text-sm flex gap-2 items-center mr-2' >
+                Collections <SlArrowRight className='text-gray-500 mt-[2px]' size={12} />
             </Link>
             <Link to='/' className='text-gray-500  text-sm flex gap-2 items-center' >
             Comfort mini denim skirt

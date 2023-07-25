@@ -4,7 +4,7 @@ import {FaFacebook,FaYoutube,FaLinkedin,FaGithub} from 'react-icons/fa'
 
 const Footer = () => {
   return (
-    <section className='w-full py-8 bg-white/80'>
+    <section className='w-full py-8 bg-teal-100/30'>
         <div className="w-full grid grid-cols-1 lg:grid-cols-4 gap-20 px-4 mb-20 ">
             {/*  */}
             <div className="w-full">

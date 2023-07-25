@@ -1,6 +1,7 @@
 import React from 'react'
 import {BsArrowDown,BsArrowRight} from 'react-icons/bs'
 import Header from '../components/Header'
+import Navbar from '../components/Navbar'
 import BottomHeader from '../components/BottomHeader'
 import Footer from '../components/Footer'
 import { FaArrowRight } from 'react-icons/fa'
@@ -11,6 +12,7 @@ import Swiper from 'swiper/bundle';
 const Home = () => {
   return (
     <>
+    <Navbar />
     <Header />
     <BottomHeader />
 
@@ -261,6 +263,7 @@ const Home = () => {
         </div>
       </div>
     </section>
+
     </>
   )
 }

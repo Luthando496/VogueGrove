@@ -1,12 +1,16 @@
 import React from 'react'
 import { AiOutlineShopping,AiOutlineHeart } from 'react-icons/ai'
 import { BsFillPersonFill } from 'react-icons/bs'
-import {Link} from 'react-router-dom'
+import {Link,useNavigate} from 'react-router-dom'
 
 
 const Navbar = () => {
+    const navigate = useNavigate()
+    
+
+
   return (
-    <nav className='w-full bg-white/70 px-2 shadow-sm '>
+    <nav className='w-full bg-white px-2 shadow-sm sticky z-50 top-0'>
         <div className="flex justify-between items-center">
         {/*  */}
         <Link to='/' className="text-2xl font-bold text-white">
@@ -19,11 +23,11 @@ const Navbar = () => {
             <Link to='/' className="text-black uppercase font-heebo md:text-xl hover:border-b pb-1 duration-700 hover:border-b-teal-600 tracking-[2px]">Home</Link>
             </li>
             <li>
-            <Link to='/about' className="text-black uppercase font-heebo md:text-xl hover:border-b pb-1 duration-700 hover:border-b-teal-600 tracking-[2px]">About</Link>
+            <Link to='/about-us' className="text-black uppercase font-heebo md:text-xl hover:border-b pb-1 duration-700 hover:border-b-teal-600 tracking-[2px]">About</Link>
             </li>
-            <li>
+            {/* <li>
             <Link to='/contact' className="text-black uppercase font-heebo md:text-xl hover:border-b pb-1 duration-700 hover:border-b-teal-600 tracking-[2px]">Contact</Link>
-            </li>
+            </li> */}
             <li>
             <Link to='/collections' className="text-black uppercase font-heebo md:text-xl hover:border-b pb-1 duration-700 hover:border-b-teal-600 tracking-[2px]">Collections</Link>
             </li>
@@ -32,13 +36,13 @@ const Navbar = () => {
 
         <div className="flex items-center gap-4">
         <div className="fle">
-            <AiOutlineShopping size={25} />
+            <AiOutlineShopping className='cursor-pointer' onClick={()=> navigate('/cart')} size={25} />
         </div>
         <div className="fle">
-            <AiOutlineHeart size={25} />
+            <AiOutlineHeart className='cursor-pointer' onClick={()=> navigate('/wishlist')} size={25} />
         </div>
         <div className="fle">
-            <BsFillPersonFill size={25} />
+            <BsFillPersonFill className='cursor-pointer' onClick={()=> navigate('/login')} size={25} />
         </div>
 
         </div>
