@@ -40,7 +40,7 @@ const ProductScreen = () => {
     </Link>
     </div>
 
-    <div className="flex flex-wrap gap-4 mt-3 px-3">
+    <div className="flex flex-wrap gap-4 mt-10 px-3">
 
     <article className="text-white lg:basis-[60%] text-[20px] col-span-1 w-full ">
             <Slider
@@ -86,8 +86,8 @@ const ProductScreen = () => {
                 <p className="text-xl font-rale before: text-black">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolor similique, veritatis quia suscipit consequuntur minima rerum cupiditate non hic harum ad placeat tempora?</p>
 
                 <div className="w-full grid grid-cols-5 gap-2 mt-10">
-                    <div className=" col-span-1">
-                        <input className='' type="number" name="" id="" />
+                    <div className="w-full col-span-1">
+                        <input className='w-fulll' type="number" name="" id="" />
                     </div>
                     <div className="col-span-3 w-full">
                         <button className="bg-black w-full uppercase px-3 py-4  text-white text-sm font-heebo text-center">
@@ -99,7 +99,7 @@ const ProductScreen = () => {
                     </div>
                 </div>
 
-                <div className="my-4 w-full flex justify-between items-center gap-2">
+                <div className="my-4 w-full mt-10 flex justify-between items-center gap-2">
                 <span className="font-roboto text-[11px] font-semibold flex items-center"><LuArrowUpDown className='mr-2'/>Compare</span>
                 <span className="font-roboto text-[11px] font-semibold flex items-center"><AiOutlineQuestionCircle className='mr-2'/>Ask a question</span>
                 <span className="font-roboto text-[11px] font-semibold flex items-center"><AiOutlineInbox className='mr-2'/>Delivery & Return</span>
@@ -109,8 +109,14 @@ const ProductScreen = () => {
                 </div>
 
                 <div className="w-full py-6 px-4 border border-zinc-500 my-6">
-                    <p className="text-base text-gray-500 "><AiOutlineCheck className='text-green-500 text-base' />Pickup available at <strong>New York</strong></p>
-                    <p className="my-1 text-[12px] text-gray-500">Usually ready in 4 hours</p>
+                    <p className="text-base text-gray-500 flex items-center gap-2"><AiOutlineCheck className='text-green-500 text-base' />Pickup available at <strong>New York</strong></p>
+                    <p className="my-1 pl-[24px] text-[12px] text-gray-500">Usually ready in 4 hours</p>
+
+                    <span className="text-sky-500 text-[12px]  mt-[20px] cursor-pointer  ml-[24px] font-semibold font-poppins pb-1 border-b hover:border-none duration-700">Check availability at other stores</span>
+                </div>
+
+                <div className="w-full p-2 border">
+                    <img src="https://wpbingo-fashow.myshopify.com/cdn/shop/files/Variable-Color.png?crop=center&height=30&v=1656906716&width=432" alt="payment-logo" className="w-full h-[100px] object-contain" />
                 </div>
 
     </article>        

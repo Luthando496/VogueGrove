@@ -10,6 +10,7 @@ export default {
         roboto: ["Roboto", "sans-serif"],
         poppins: ["Poppins", "sans-serif"],
         heebo: ["Heebo", "sans-serif"],
+        jost: ['Jost', "sans-serif"],
       },
     },
   },

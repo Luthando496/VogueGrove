@@ -25,7 +25,7 @@ const Navbar = () => {
             <Link to='/contact' className="text-black uppercase font-heebo md:text-xl hover:border-b pb-1 duration-700 hover:border-b-teal-600 tracking-[2px]">Contact</Link>
             </li>
             <li>
-            <Link to='/products' className="text-black uppercase font-heebo md:text-xl hover:border-b pb-1 duration-700 hover:border-b-teal-600 tracking-[2px]">Products</Link>
+            <Link to='/collections' className="text-black uppercase font-heebo md:text-xl hover:border-b pb-1 duration-700 hover:border-b-teal-600 tracking-[2px]">Collections</Link>
             </li>
         </ul>
         {/*  */}
