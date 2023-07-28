@@ -1,17 +1,20 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import Navbar from '../components/Navbar'
-import { Link } from 'react-router-dom'
+import { Link,useParams } from 'react-router-dom'
 import {SlArrowRight} from 'react-icons/sl'
 import {FaArrowRight} from 'react-icons/fa'
 import {LuArrowUpDown} from 'react-icons/lu'
 import {AiOutlineHeart,AiOutlineCheck,AiOutlineQuestionCircle,AiOutlineInbox} from 'react-icons/ai'
 import {Carousel as Slider} from 'react-responsive-carousel'
-
-
+import { useDispatch,useSelector } from 'react-redux'
+import {singleProduct} from '../store/actions/productActions'
 
 const ProductScreen = () => {
     const [qty, setQty] = useState(1)
+    const {id} = useParams()
     const [toggle,setToggle]= useState(1)
+    const dispatch = useDispatch()
+    const {products} = useSelector(state => state.prod)
 
     const images = [{
         url: 'https://images.pexels.com/photos/1407354/pexels-photo-1407354.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'},
@@ -21,6 +24,16 @@ const ProductScreen = () => {
 
     const changeCart=()=>{
         setQty(qty+1)
+    }
+
+    useEffect(()=>{
+        dispatch(singleProduct(id))
+    },[dispatch])
+
+    if(!products){
+        return(
+            <div>No Products Available...</div>
+        )
     }
   return (
     <>
@@ -32,11 +45,11 @@ const ProductScreen = () => {
     <Link to='/' className='text-gray-500  text-sm flex gap-2 items-center' >
         Home <SlArrowRight className='text-gray-500 mt-[2px]' size={12} />
     </Link>
-    <Link to='/' className='text-gray-500  text-sm flex gap-2 items-center' >
-        Accessories <SlArrowRight className='text-gray-500 mt-[2px]' size={12} />
+    <Link to={`/collection/${products.category}`} className='text-gray-500  text-sm flex gap-2 items-center' >
+    {products.category} <SlArrowRight className='text-gray-500 mt-[2px]' size={12} />
     </Link>
     <Link to='/' className='text-gray-500  text-sm flex gap-2 items-center' >
-    Comfort mini denim skirt
+    {products.name}
     </Link>
     </div>
 
@@ -50,7 +63,7 @@ const ProductScreen = () => {
                 thumbWidth={60}
                 className="productCarousel"
             >
-                {images?.map((img,index) => (
+                {products.images?.map((img,index) => (
                     <img
                         key={index}
                         src={img?.url}
@@ -67,15 +80,15 @@ const ProductScreen = () => {
 
      <div className="flex my-4 gap-4">
         <span className="text-gray-700 font-bold text-base line-through">R 300</span>
-        <span className="text-red-500 font-roboto text-xl font-semibold">R 448.00</span>
+        <span className="text-red-500 font-roboto text-xl font-semibold">R {products.price}</span>
      </div>
      <div className="flex my-1 gap-[8px]">
         <span className="text-black">By</span>
         <span className="text-sky-500 ">Nike</span>
      </div>
      <hr />
-     <h1 className="text-4xl text-black/75 mt-4">Nike</h1>
-                <p className="py-6 text-black uppercase text-xl">Clothing</p>
+     <h1 className="text-4xl text-black/75 mt-4">{products.brand}</h1>
+                <p className="py-6 text-black uppercase text-xl">{products.category}</p>
                 <div className="flex justify-between ">
                     <p className="text-xl text-gray-700">Price : ZAR 789.00</p>
                     <span className="text-xl text-green-500">23% off</span>
@@ -83,7 +96,7 @@ const ProductScreen = () => {
                 <p className="text-black/70 pt-2 text-md">incl. of taxes</p>
                 <p className="text-black/70 pb-8 text-md">(Also includes all applicable duties)</p>
 
-                <p className="text-xl font-rale before: text-black">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolor similique, veritatis quia suscipit consequuntur minima rerum cupiditate non hic harum ad placeat tempora?</p>
+                <p className="text-xl font-rale before: text-black">{products.description}</p>
 
                 <div className="w-full grid grid-cols-5 gap-2 mt-10">
                     <div className="w-full col-span-1">

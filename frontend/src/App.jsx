@@ -25,9 +25,9 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/wishlist" element={<Wishlist />} />
         <Route path="/about-us" element={<About />} />
-        <Route path="/product/id" element={<ProductScreen />} />
+        <Route path="/product/:id" element={<ProductScreen />} />
         <Route path="/collections" element={<CollectionsPage />} />
-        <Route path="/collections/men" element={<CollectionItem />} />
+        <Route path="/collections/:id" element={<CollectionItem />} />
         <Route path="*" element={<ErrorPage />} />
         {/* <Route path="/about" element={<About />} />
         <Route path="/services" element={<Services />} />

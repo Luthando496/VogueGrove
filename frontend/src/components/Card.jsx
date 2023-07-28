@@ -2,8 +2,8 @@ import React from 'react'
 
 const Card = ({image,name,price,height}) => {
   return (
-        <div className="w-full">
-        <div className={`card-image group max-h-[${height}] h-[${height}] relative overflow-hidden`}>
+        <div className="w-full ">
+        <div className={`card-image group  h-[${height}] relative overflow-hidden`}>
           <img src={image} alt="image" className="w-full max-h-full h-full object-cover hover:scale-150 duration-[700ms]" />
           <span className="absolute top-4 left-4 p-2 bg-sky-700 text-white font-thin">- 20% off</span>
           <div className="absolute group-hover:translate-y-[0%] duration-700 translate-y-[100%] text-center bottom-0 w-full py-4 px-2 bg-black/40">

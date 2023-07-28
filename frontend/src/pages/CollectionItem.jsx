@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import {useState,useEffect} from 'react'
 import Navbar from '../components/Navbar'
 import {Link} from 'react-router-dom'
 import {SlArrowRight} from 'react-icons/sl'
@@ -13,14 +13,30 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';    
 import Card from '../components/Card'
+import {useDispatch,useSelector} from 'react-redux'
+import {getCollection,getProducts} from '../store/actions/productActions'
+import {useParams} from 'react-router-dom'
+
 
 
 const CollectionItem = () => {
     const [age, setAge] = useState('');
+    const {products} = useSelector(state => state.prod)
+    const dispatch = useDispatch()
+    const {id} = useParams()
 
   const handleChange = (event) => {
     setAge(event.target.value);
   };
+
+  useEffect(()=>{
+    if(id == 'all'){
+      dispatch(getProducts())
+    }
+    dispatch(getCollection(id))
+
+  },[dispatch])
+
 
 
   return (
@@ -29,7 +45,7 @@ const CollectionItem = () => {
         <hr />
 
         <div className="mx-auto text-center w-full my-14">
-            <h1 className='font-roboto text-black/90 text-xl md:text-3xl font-semibold lg:text-4xl'>Women</h1>
+            <h1 className='font-roboto text-black/90 text-xl md:text-3xl font-semibold lg:text-4xl'>{id}</h1>
             <div className="w-full px-5 flex justify-center items-center my-4">
             <Link to='/' className='text-gray-500  text-sm flex gap-2 mr-2 items-center' >
                 Home <SlArrowRight className='text-gray-500 mt-[2px]' size={12} />
@@ -37,9 +53,9 @@ const CollectionItem = () => {
             <Link to='/collections' className='text-gray-500  text-sm flex gap-2 items-center mr-2' >
                 Collections <SlArrowRight className='text-gray-500 mt-[2px]' size={12} />
             </Link>
-            <Link to='/' className='text-gray-500  text-sm flex gap-2 items-center' >
-            Comfort mini denim skirt
-            </Link>
+            <span  className='text-gray-500  text-sm flex gap-2 items-center' >
+            {id}
+            </span>
             </div>
         </div>
 
@@ -120,17 +136,11 @@ const CollectionItem = () => {
             </div>
             {/*  */}
 
-            <div className="w-full grid grid-cols-1  sm:grid-cols-2 lg:grid-cols-3 gap-y-10 gap-x-4 mt-10">
-                <Card image={'https://cdn.shopify.com/s/files/1/0112/6468/8186/products/9_360x.jpg?v=1665019404'} name='Playstation 5' price={'123.00'} height='20rem' />
-                <Card image={'https://cdn.shopify.com/s/files/1/0112/6468/8186/products/57_aae90e2b-1403-40ca-9004-fcdbf2b14ceb_360x.jpg?v=1665549687'} name='Playstation 5' price={'123.00'} height='20rem' />
-                <Card image={'https://cdn.shopify.com/s/files/1/0112/6468/8186/products/15_4bf71efc-7b2e-4f6a-ba05-e543385926c9_360x.jpg?v=1665549630'} name='Playstation 5' price={'123.00'} height='20rem' />
-                <Card image={'https://images.pexels.com/photos/1661471/pexels-photo-1661471.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'} name='Playstation 5' price={'123.00'} height='20rem' />
-                <Card image={'https://images.pexels.com/photos/1858488/pexels-photo-1858488.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'} name='Playstation 5' price={'123.00'} height='20rem' />
-                <Card image={'https://images.pexels.com/photos/2866119/pexels-photo-2866119.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'} name='Playstation 5' price={'123.00'} height='20rem' />
+            <div className="w-full grid grid-cols-1  sm:grid-cols-2 lg:grid-cols-3 gap-y-[4rem] gap-x-4 mt-10">
+            {products?.map((product,index)=>(
+                <Card key={index} image={product.image} name={product.name} price={product.price} height='20rem' />
 
-                <Card image={'https://images.pexels.com/photos/2821106/pexels-photo-2821106.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'} name='Playstation 5' price={'123.00'} height='20rem' />
-                <Card image={'https://images.pexels.com/photos/3651597/pexels-photo-3651597.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'} name='Playstation 5' price={'123.00'} height='20rem' />
-                <Card image={'https://images.pexels.com/photos/1040945/pexels-photo-1040945.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'} name='Playstation 5' price={'123.00'} height='20rem' />
+            ))}
             </div>
             </div>
             {/*  */}

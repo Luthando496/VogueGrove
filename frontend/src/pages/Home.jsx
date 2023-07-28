@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import {BsArrowDown,BsArrowRight} from 'react-icons/bs'
 import Header from '../components/Header'
 import Navbar from '../components/Navbar'
@@ -6,10 +6,22 @@ import BottomHeader from '../components/BottomHeader'
 import Footer from '../components/Footer'
 import { FaArrowRight } from 'react-icons/fa'
 import Swiper from 'swiper/bundle';
+import {useDispatch,useSelector} from 'react-redux'
+import { getProducts } from '../store/actions/productActions'
+import Card from '../components/Card'
+import {Link} from 'react-router-dom'
+
 
 
 
 const Home = () => {
+  const dispatch = useDispatch()
+  const {products} = useSelector((state) => state.prod)
+
+  useEffect(()=>{
+    dispatch(getProducts())
+
+  },[dispatch])
   return (
     <>
     <Navbar />
@@ -84,94 +96,14 @@ const Home = () => {
       </div>
 
       <div className="grid mb-20 grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-y-8 gap-x-4 px-4 md:px-8">
+      {products.length > 0 && products.map((product,index) => (
+        <Link key={product._id} to={`/product/${product._id}`}>
+      <Card key={product._id} image={product.image} name={product.name} price={product.price} height='200px' />
+        </Link>
 
-      {/* card */}
-      <div className="w-full">
-        <div className="card-image group h-[400px] relative overflow-hidden">
-          <img src="https://plus.unsplash.com/premium_photo-1689327920656-bcfe8a9709fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=871&q=80" alt="image" className="w-full h-full object-cover hover:scale-150 duration-[700ms]" />
-          <span className="absolute top-4 left-4 p-2 bg-sky-700 text-white font-thin">- 20% off</span>
-          <div className="absolute group-hover:translate-y-[0%] duration-700 translate-y-[100%] text-center bottom-0 w-full py-4 px-2 bg-black/40">
-            <a href='#' className="text-center text-amber-500   tracking-[3px] font-semibold">Add to Cart</a>
-          </div>
-        </div>
-        <div className="card-body text-center mt-4 space-y-3">
-          <h3 className="text-xl font-light text-light-700">Long Sleeve T-shirt</h3>
-          <p className="text-sky-900 font-semibold text-xl">R799,00</p>
-        </div>
-      </div>
-      <div className="w-full">
-        <div className="card-image h-[400px] relative overflow-hidden">
-          <img src="https://images.unsplash.com/photo-1588099768531-a72d4a198538?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=387&q=80" alt="image" className="w-full h-full object-cover hover:scale-150 duration-[700ms]" />
-          <span className="absolute top-4 left-4 p-2 bg-sky-700 text-white font-thin">- 20% off</span>
-        </div>
-        <div className="card-body text-center mt-4 space-y-3">
-          <h3 className="text-xl font-light text-light-700">Long Sleeve T-shirt</h3>
-          <p className="text-sky-900 font-semibold text-xl">R799,00</p>
-        </div>
-      </div>
-      <div className="w-full">
-        <div className="card-image h-[400px] relative overflow-hidden">
-          <img src="https://plus.unsplash.com/premium_photo-1689327920656-bcfe8a9709fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=871&q=80" alt="image" className="w-full h-full object-cover hover:scale-150 duration-[700ms]" />
-          <span className="absolute top-4 left-4 p-2 bg-sky-700 text-white font-thin">- 20% off</span>
-        </div>
-        <div className="card-body text-center mt-4 space-y-3">
-          <h3 className="text-xl font-light text-light-700">Long Sleeve T-shirt</h3>
-          <p className="text-sky-900 font-semibold text-xl">R799,00</p>
-        </div>
-      </div>
-      <div className="w-full">
-        <div className="card-image h-[400px] relative overflow-hidden">
-          <img src="https://plus.unsplash.com/premium_photo-1689327920656-bcfe8a9709fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=871&q=80" alt="image" className="w-full h-full object-cover hover:scale-150 duration-[700ms]" />
-          <span className="absolute top-4 left-4 p-2 bg-sky-700 text-white font-thin">- 20% off</span>
-        </div>
-        <div className="card-body text-center mt-4 space-y-3">
-          <h3 className="text-xl font-light text-light-700">Long Sleeve T-shirt</h3>
-          <p className="text-sky-900 font-semibold text-xl">R799,00</p>
-        </div>
-      </div>
-      {/*  */}
-      {/* card */}
-      <div className="w-full">
-        <div className="card-image h-[400px] relative overflow-hidden">
-          <img src="https://plus.unsplash.com/premium_photo-1689327920656-bcfe8a9709fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=871&q=80" alt="image" className="w-full h-full object-cover hover:scale-150 duration-[700ms]" />
-          <span className="absolute top-4 left-4 p-2 bg-sky-700 text-white font-thin">- 20% off</span>
-        </div>
-        <div className="card-body text-center mt-4 space-y-3">
-          <h3 className="text-xl font-light text-light-700">Long Sleeve T-shirt</h3>
-          <p className="text-sky-900 font-semibold text-xl">R799,00</p>
-        </div>
-      </div>
-      <div className="w-full">
-        <div className="card-image h-[400px] relative overflow-hidden">
-          <img src="https://plus.unsplash.com/premium_photo-1689327920656-bcfe8a9709fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=871&q=80" alt="image" className="w-full h-full object-cover hover:scale-150 duration-[700ms]" />
-          <span className="absolute top-4 left-4 p-2 bg-sky-700 text-white font-thin">- 20% off</span>
-        </div>
-        <div className="card-body text-center mt-4 space-y-3">
-          <h3 className="text-xl font-light text-light-700">Long Sleeve T-shirt</h3>
-          <p className="text-sky-900 font-semibold text-xl">R799,00</p>
-        </div>
-      </div>
-      <div className="w-full">
-        <div className="card-image h-[400px] relative overflow-hidden">
-          <img src="https://plus.unsplash.com/premium_photo-1689327920656-bcfe8a9709fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=871&q=80" alt="image" className="w-full h-full object-cover hover:scale-150 duration-[700ms]" />
-          <span className="absolute top-4 left-4 p-2 bg-sky-700 text-white font-thin">- 20% off</span>
-        </div>
-        <div className="card-body text-center mt-4 space-y-3">
-          <h3 className="text-xl font-light text-light-700">Long Sleeve T-shirt</h3>
-          <p className="text-sky-900 font-semibold text-xl">R799,00</p>
-        </div>
-      </div>
-      <div className="w-full">
-        <div className="card-image h-[400px] relative overflow-hidden">
-          <img src="https://plus.unsplash.com/premium_photo-1689327920656-bcfe8a9709fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=871&q=80" alt="image" className="w-full h-full object-cover hover:scale-150 duration-[700ms]" />
-          <span className="absolute top-4 left-4 p-2 bg-sky-700 text-white font-thin">- 20% off</span>
-        </div>
-        <div className="card-body text-center mt-4 space-y-3">
-          <h3 className="text-xl font-light text-light-700">Long Sleeve T-shirt</h3>
-          <p className="text-sky-900 font-semibold text-xl">R799,00</p>
-        </div>
-      </div>
-      {/*  */}
+      ))}
+      
+
 
       </div>
 
