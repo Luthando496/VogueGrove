@@ -11,6 +11,7 @@ export default {
         poppins: ["Poppins", "sans-serif"],
         heebo: ["Heebo", "sans-serif"],
         jost: ['Jost', "sans-serif"],
+        crimson: ['Crimson Text', "sans-serif"],
       },
     },
   },

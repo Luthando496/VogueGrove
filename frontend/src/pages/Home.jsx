@@ -3,20 +3,17 @@ import {BsArrowDown,BsArrowRight} from 'react-icons/bs'
 import Header from '../components/Header'
 import Navbar from '../components/Navbar'
 import BottomHeader from '../components/BottomHeader'
-import Footer from '../components/Footer'
 import { FaArrowRight } from 'react-icons/fa'
-import Swiper from 'swiper/bundle';
 import {useDispatch,useSelector} from 'react-redux'
 import { getProducts } from '../store/actions/productActions'
 import Card from '../components/Card'
 import {Link} from 'react-router-dom'
-
-
+import Spinner from '../components/Spinner'
 
 
 const Home = () => {
   const dispatch = useDispatch()
-  const {products} = useSelector((state) => state.prod)
+  const {products,loading} = useSelector((state) => state.prod)
 
   useEffect(()=>{
     dispatch(getProducts())
@@ -27,6 +24,7 @@ const Home = () => {
     <Navbar />
     <Header />
     <BottomHeader />
+    
 
 
     <section className="w-full my-20">
@@ -91,21 +89,22 @@ const Home = () => {
       <div className="heading my-20 flex justify-between px-4 md:px-10 lg:px-20 items-center">
         <h1 className="text-xl lg:text-3xl text-gray-500 flex items-center">You are <strong className='text-black ml-2'> trending</strong><BsArrowDown className='ml-4 font-thin'/> </h1>
 
-        <a href="#" className="text-light text-base lg:text-xl text-gray-700">Shop All Products</a>
+        <Link to="/collection/all" className="text-light text-base lg:text-xl text-gray-700">Shop All Products</Link>
 
       </div>
 
-      <div className="grid mb-20 grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-y-8 gap-x-4 px-4 md:px-8">
-      {products.length > 0 && products.map((product,index) => (
-        <Link key={product._id} to={`/product/${product._id}`}>
-      <Card key={product._id} image={product.image} name={product.name} price={product.price} height='200px' />
-        </Link>
+      
+      {loading ? <Spinner load={loading} /> : products.length > 0 &&(
+        <div className="grid mb-20 grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-y-8 gap-x-4 px-4 md:px-8">
+        {products.slice(0,8).map((product,index) => (
+      <Card key={product._id} product={product} height='200px' />
 
       ))}
+      </div>
+      )}
       
 
 
-      </div>
 
       <hr />
 
