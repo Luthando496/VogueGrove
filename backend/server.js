@@ -6,6 +6,7 @@ dotenv.config();
 import morgan from 'morgan'
 import connectDB from './config/db.js';
 import productRoutes from './routes/productRoutes.js';
+import { fileURLToPath } from 'url';
 import userRoutes from './routes/userRoutes.js';
 // import orderRoutes from './routes/orderRoutes.js';
 // import uploadRoutes from './routes/uploadRoutes.js';
@@ -31,7 +32,7 @@ app.use('/api/users', userRoutes);
 // );
 
 if (process.env.NODE_ENV === 'production') {
-  // const __dirname = path.resolve();
+  const __dirname = path.resolve();
   // app.use('/uploads', express.static('/var/data/uploads'));
   app.use(express.static(path.join(__dirname, '/frontend/build')));
 
