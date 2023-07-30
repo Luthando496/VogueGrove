@@ -17,7 +17,7 @@ const ProductScreen = () => {
     const {id} = useParams()
     const [toggle,setToggle]= useState(1)
     const dispatch = useDispatch()
-    const {products,loading,error} = useSelector(state => state.prod)
+    const {product,loading,error} = useSelector(state => state.prod)
 
 
     const changeCart=()=>{
@@ -28,9 +28,9 @@ const ProductScreen = () => {
         dispatch(singleProduct(id))
     },[dispatch])
 
-    if(!products){
+    if(!product){
         return(
-            <div>No Products Available...</div>
+            <div>No Product Available...</div>
         )
     }
 
@@ -48,11 +48,11 @@ const ProductScreen = () => {
     <Link to='/' className='text-gray-500  text-sm flex gap-2 items-center' >
         Home <SlArrowRight className='text-gray-500 mt-[2px]' size={12} />
     </Link>
-    <Link to={`/collection/${products.category}`} className='text-gray-500  text-sm flex gap-2 items-center' >
-    {products.category} <SlArrowRight className='text-gray-500 mt-[2px]' size={12} />
+    <Link to={`/collection/${product.category}`} className='text-gray-500  text-sm flex gap-2 items-center' >
+    {product.category} <SlArrowRight className='text-gray-500 mt-[2px]' size={12} />
     </Link>
     <Link to='/' className='text-gray-500  text-sm flex gap-2 items-center' >
-    {products.name}
+    {product.name}
     </Link>
     </div>
 
@@ -138,7 +138,7 @@ const ProductScreen = () => {
     </section>
     <hr />
     <section className="w-full flex justify-center my-7 items-center px-4 md:px-10 lg:px-14">
-        <p className="text-base text-black/80 leading-[1.9] tracking-[2px] font-jost font-semibold">{products.description}</p>
+        <p className="text-base text-black/80 leading-[1.9] tracking-[2px] font-jost font-semibold">{product.description}</p>
     </section>
     <hr />
     <div className="flex w-full justify-center gap-8 mb-12  mt-20 ">

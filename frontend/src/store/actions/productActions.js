@@ -24,7 +24,7 @@ async dispatch =>{
             dispatch(productAction.allProductsRequest())
             const {data} = await axios.get(`/api/products/${id}`)
 
-            dispatch(productAction.ProductsSuccess(data))
+            dispatch(productAction.SingleProduct(data))
 
         }catch(err){
             console.log(err)

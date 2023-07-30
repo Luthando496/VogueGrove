@@ -7,7 +7,7 @@ import {orderReducer} from './orderReducer'
 
 const productSlice = createSlice({
     name:'product',
-    initialState:{products:[],loading:false,error:null },
+    initialState:{products:[],loading:false,error:null, product:null},
     reducers:{
         allProductsRequest(state, action){
             state.loading =true
@@ -20,6 +20,10 @@ const productSlice = createSlice({
             state.er =action.payload
             state.loading =false
             state.products = []
+        },
+        SingleProduct(state, action){
+            state.products =action.payload
+            state.loading = false
         },
         // newProduct(state, action){
         //     state.newProd = action.payload
