@@ -326,7 +326,7 @@ const products =[
         images:[{url:'https://ofour.com/wp-content/uploads/2023/05/human-made-drawstring-backpack-olivedrab-1.jpg'},{url:'hhttps://ofour.com/wp-content/uploads/2023/05/human-made-drawstring-backpack-olivedrab-2.jpg'}],
         price:1400,
         description:`Human Made is the latest venture from A Bathing Ape (BAPE) founder NIGO best known for its revolutionary and trendsetting streetwear silhouettes, which include tees, button-up shirts, chinos and small fashion accessories. The brand takes inspiration from 1950s Americana and American workwear heritage, with its recurring motif giving reverence to NIGO’s Tokyo boutique diner, Curry Up. The Japanese fashion label has partnered with the likes of Hender Scheme, N.E.R.D. and STUDIO SEVEN, to name a few, and its designs are famously favoured by Pharrell Williams.`,
-        brand:'bape',
+        brand:'Bape',
         category:'Accessories',
         countInStock:8,
     },
