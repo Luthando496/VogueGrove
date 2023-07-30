@@ -13,6 +13,7 @@ import CollectionItem from './pages/CollectionItem';
 import About from './pages/About';
 import Wishlist from './pages/Wishlist';
 import ErrorPage from './pages/ErrorPage';
+import Cart from './pages/Cart';
 
 
 
@@ -23,6 +24,7 @@ function App() {
     <>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/cart" element={<Cart />} />
         <Route path="/wishlist" element={<Wishlist />} />
         <Route path="/about-us" element={<About />} />
         <Route path="/product/:id" element={<ProductScreen />} />

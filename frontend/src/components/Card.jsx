@@ -16,12 +16,11 @@ const Card = ({product,height}) => {
         <div className="w-full ">
         <div className={`card-image group  h-[${height}] relative overflow-hidden`}>
         <Link to={`/product/${_id}`}>
-          <img src={image} alt="image" className="w-full max-h-full h-full object-cover hover:scale-150 duration-[700ms]" />
+          <img src={image} alt="image" className="w-full max-h-full h-full  hover:scale-150 duration-[700ms]" />
         </Link>
-          <span className="absolute top-4 left-4 p-2 bg-sky-700 text-white font-thin">- 20% off</span>
-          <div className="absolute group-hover:translate-y-[0%] duration-700 translate-y-[100%] text-center bottom-0 w-full h-[50px] bg-black/40 grid grid-cols-2">
-            <button onClick={addToCartHandler} className="text-center text-base font-jost text-amber-500 bg-black  tracking-[3px] font-thin px-1">Add to Cart</button>
-            <button onClick={()=>addTofavoriteHandler(product)} className="text-center text-base font-roboto text-amber-500 bg-white w-full tracking-[3px] font-light px-2 flex items-center gap-1">Favorite <AiFillHeart size={20} className='text-pink-800' /></button>
+          {/* <span className="absolute top-4 left-4 p-2 bg-sky-700 text-white font-thin">- 20% off</span> */}
+          <div className="absolute group-hover:translate-y-[0%] duration-700 translate-y-[100%] text-center bottom-0 w-full h-[50px] bg-black/40 ">
+            <button onClick={addToCartHandler} className="text-center w-full h-full mb-2 text-base font-jost text-amber-500 bg-black/60  tracking-[3px] font-thin px-1">Add to Cart</button>
           </div>
         </div>
         <div className="card-body text-center mt-4 space-y-3">

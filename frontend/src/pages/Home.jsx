@@ -89,7 +89,7 @@ const Home = () => {
       <div className="heading my-20 flex justify-between px-4 md:px-10 lg:px-20 items-center">
         <h1 className="text-xl lg:text-3xl text-gray-500 flex items-center">You are <strong className='text-black ml-2'> trending</strong><BsArrowDown className='ml-4 font-thin'/> </h1>
 
-        <Link to="/collection/all" className="text-light text-base lg:text-xl text-gray-700">Shop All Products</Link>
+        <Link to="/collections/all" className="text-light text-base lg:text-xl text-gray-700">Shop All Products</Link>
 
       </div>
 

@@ -21,7 +21,7 @@ const Header = () => {
     <>
     <div className='overflow-hidden'>
     <Swiper {...params}>
-    <header className='w-full max-w-[100%] h-[90vh] relative yellow'>
+    <header className='w-full md:w-full lg:-w-full h-[90vh] relative yellow'>
       <img src={logo2} alt="logo" className='absolute h-full right-24' />
 
       <div className="absolute left-2 fade-right text-white top-16 p-10">
@@ -55,11 +55,11 @@ const Header = () => {
       <img src={logo3} alt="logo" className='absolute object-contain right-0 h-full lg:right-24' />
 
       <div className="absolute left-2 fade-right text-gray-900 tracking-[4px] top-16 p-10">
-      <h1 className="my-5 uppercase text-xl lg:text-4xl font-[400] leading-[1.8]">
+      <h1 className="my-5 text-white uppercase text-xl lg:text-4xl font-[400] leading-[1.8]">
         Essentials <br />Starting At R400,90
       </h1>
 
-      <h3 className="capitalize my-6 text-xl lg:text-2xl text-gray-900 tracking-[4px] font-[500]">Our Stores are only located in Cape Town</h3>
+      <h3 className="capitalize text-white my-6 text-xl lg:text-2xl text-gray-900 tracking-[4px] font-[500]">Our Stores are only located in Cape Town</h3>
 
       <button className="px-6 tracking-[4px] font-semibold rounded-md mybtn py-4 bg-white text-black text-center uppercase text-sm">Shop Now</button>
       </div>

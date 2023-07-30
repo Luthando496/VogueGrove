@@ -176,3 +176,14 @@
   height: 100%;
 }
 
+
+.ReactCollapse--collape{
+  transition: height 500ms;
+}
+
+
+.carth{
+  background:linear-gradient(rgba(0, 0, 0, 0.437),rgb(3, 3, 3,0.5)),url('/images/mina-rad-V94CguEmeos-unsplash.jpg');
+  background-size: cover;
+  background-position: center;
+}

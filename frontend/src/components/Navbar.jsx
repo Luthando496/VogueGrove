@@ -1,11 +1,13 @@
 import React from 'react'
 import { AiOutlineShopping,AiOutlineHeart } from 'react-icons/ai'
 import { BsFillPersonFill } from 'react-icons/bs'
+import { useSelector } from 'react-redux'
 import {Link,useNavigate} from 'react-router-dom'
 
 
 const Navbar = () => {
     const navigate = useNavigate()
+    const {items} = useSelector((state) => state.cart)
     
 
 
@@ -35,15 +37,16 @@ const Navbar = () => {
         {/*  */}
 
         <div className="flex items-center gap-4">
-        <div className="fle">
-            <AiOutlineShopping className='cursor-pointer' onClick={()=> navigate('/cart')} size={25} />
+        <div className="fle relative">
+            <AiOutlineShopping className='cursor-pointer' onClick={()=> navigate('/cart')} size={55} />
+            <span className="rounded-full py-[2px] pl-[7px] pr-[8px] bg-yellow-400 text-white absolute -top-3 right-1">{items.length}</span>
         </div>
-        <div className="fle">
+        {/* <div className="fle">
             <AiOutlineHeart className='cursor-pointer' onClick={()=> navigate('/wishlist')} size={25} />
-        </div>
-        <div className="fle">
+        </div> */}
+        {/* <div className="fle">
             <BsFillPersonFill className='cursor-pointer' onClick={()=> navigate('/login')} size={25} />
-        </div>
+        </div> */}
 
         </div>
 

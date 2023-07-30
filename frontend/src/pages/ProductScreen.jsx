@@ -8,19 +8,17 @@ import {AiOutlineHeart,AiOutlineCheck,AiOutlineQuestionCircle,AiOutlineInbox} fr
 import {Carousel as Slider} from 'react-responsive-carousel'
 import { useDispatch,useSelector } from 'react-redux'
 import {singleProduct} from '../store/actions/productActions'
+import Spinner from '../components/Spinner'
+import { addCart } from '../store/actions/cartActions'
+
 
 const ProductScreen = () => {
     const [qty, setQty] = useState(1)
     const {id} = useParams()
     const [toggle,setToggle]= useState(1)
     const dispatch = useDispatch()
-    const {products} = useSelector(state => state.prod)
+    const {products,loading,error} = useSelector(state => state.prod)
 
-    const images = [{
-        url: 'https://images.pexels.com/photos/1407354/pexels-photo-1407354.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'},
-       {url: 'https://images.pexels.com/photos/6748313/pexels-photo-6748313.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'},
-        {url: 'https://images.pexels.com/photos/6776084/pexels-photo-6776084.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'},
-    {url:"https://images.pexels.com/photos/6864642/pexels-photo-6864642.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"}]
 
     const changeCart=()=>{
         setQty(qty+1)
@@ -35,6 +33,11 @@ const ProductScreen = () => {
             <div>No Products Available...</div>
         )
     }
+
+    const addCartHandler = (product) => {
+        dispatch(addCart(product))
+    }
+    
   return (
     <>
     <Navbar />
@@ -53,8 +56,7 @@ const ProductScreen = () => {
     </Link>
     </div>
 
-    <div className="flex flex-wrap gap-4 mt-10 px-3">
-
+    {loading ? <Spinner /> : error ? <></> : (<div className="flex flex-wrap gap-4 mt-10 px-3">
     <article className="text-white lg:basis-[60%] text-[20px] col-span-1 w-full ">
             <Slider
                 infiniteLoop={true}
@@ -96,14 +98,9 @@ const ProductScreen = () => {
                 <p className="text-black/70 pt-2 text-md">incl. of taxes</p>
                 <p className="text-black/70 pb-8 text-md">(Also includes all applicable duties)</p>
 
-                <p className="text-xl font-rale before: text-black">{products.description}</p>
-
-                <div className="w-full grid grid-cols-5 gap-2 mt-10">
-                    <div className="w-full col-span-1">
-                        <input className='w-fulll' type="number" name="" id="" />
-                    </div>
-                    <div className="col-span-3 w-full">
-                        <button className="bg-black w-full uppercase px-3 py-4  text-white text-sm font-heebo text-center">
+                <div className="w-full grid grid-cols-5 gap-2 mt-10 items-center">
+                    <div className="col-span-4 w-full">
+                        <button onClick={()=> addCartHandler(products)} className="bg-black hover:bg-orange-400 rounded-md hover:shadow-2xl duration-700 hover:translate-y-2 w-full uppercase px-3 py-4  text-white text-sm font-heebo text-center">
                             Add To cart
                         </button>
                     </div>
@@ -134,8 +131,16 @@ const ProductScreen = () => {
 
     </article>        
 
-    </div>
+    </div>)}
+    
+
+
     </section>
+    <hr />
+    <section className="w-full flex justify-center my-7 items-center px-4 md:px-10 lg:px-14">
+        <p className="text-base text-black/80 leading-[1.9] tracking-[2px] font-jost font-semibold">{products.description}</p>
+    </section>
+    <hr />
     <div className="flex w-full justify-center gap-8 mb-12  mt-20 ">
         <ul className="flex gap-8">
             <li className={`${toggle === 1 ?  'border-t-[3px] border-teal-900' : '' }  text-xl cursor-pointer text-gray-600 font-semibold  -mt-[1.6rem] py-6 tracking-[2px]  `}  onClick={() => setToggle(1)}><span className="">Description</span>

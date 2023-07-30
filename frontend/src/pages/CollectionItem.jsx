@@ -1,5 +1,6 @@
 import {useState,useEffect} from 'react'
 import Navbar from '../components/Navbar'
+import Spinner from '../components/Spinner'
 import {Link} from 'react-router-dom'
 import {SlArrowRight} from 'react-icons/sl'
 import Box from '@mui/material/Box';
@@ -14,14 +15,22 @@ import {useParams} from 'react-router-dom'
 import {FcFilledFilter} from 'react-icons/fc'
 import {BiFilter} from 'react-icons/bi'
 import {AiOutlineMinus} from 'react-icons/ai'
+import { useCollapse } from 'react-collapsed'
+
 
 
 
 const CollectionItem = () => {
     const [age, setAge] = useState('');
-    const {products} = useSelector(state => state.prod)
+    const {products,loading,error} = useSelector(state => state.prod)
     const dispatch = useDispatch()
+    const [isExpanded, setExpanded] = useState(true)
+    const [isBrand, setIsBrand] = useState(true)
+  const { getCollapseProps, getToggleProps } = useCollapse({ isExpanded,duration:200 })
     const {id} = useParams()
+
+    const bbh = products && products.filter((item)=> item.brand === 'Nike')
+    console.log(bbh)
 
   const handleChange = (event) => {
     setAge(event.target.value);
@@ -60,7 +69,7 @@ const CollectionItem = () => {
         <section className="my-20 w-full relative">
             <div className="px-2 md:px-3 relative lg:px-5 grid grid-cols-3 gap-5">
             {/*  */}
-            <div className="py-10 w-full hidden md:block md:col-span-1">
+            <div className="py-10 w-full hidden lg:block md:col-span-1">
             <div className='flex items-center gap-8 border-b pb-4' >
             <FcFilledFilter size={29} />
             <h3 className='text-xl font-semibold font-heebo tracking-[6px]'>Filter By</h3>
@@ -69,14 +78,124 @@ const CollectionItem = () => {
               <div className="flex gap-5">
                 <BiFilter size={20} /><span className='text-base font-semibold font-poppins uppercase'>Availability</span>
               </div>
-                <AiOutlineMinus size={20} />
+                <AiOutlineMinus {...getToggleProps({
+                onClick: () => setExpanded((prevExpanded) => (!prevExpanded)),
+                })} size={20} />
             </div>
+            <section {...getCollapseProps()} >
+              <div className="flex items-center justify-between mt-8">
+                <div className="flex gap-7">
+                  <input type="checkbox" name="checkbox" id="" />
+                  <span className="text-sm text-black/70">In stock</span>
+                </div>
+                <span className='font-poppins'>24</span>
+              </div>
+              <div className="flex items-center justify-between mt-2">
+                <div className="flex gap-7">
+                  <input type="checkbox" name="checkbox" id="" />
+                  <span className="text-sm text-black/70">Out of stock</span>
+                </div>
+                <span className='font-poppins'>3</span>
+              </div>
+            </section>
             <div>
+            {/* 2nd */}
+            {/* 3rd */}
+            <div className="mt-8 w-full flex items-center justify-between">
+              <div className="flex gap-5">
+                <BiFilter size={20} /><span className='text-base font-semibold font-poppins uppercase'>brand</span>
+              </div>
+                <AiOutlineMinus {...getToggleProps({
+                onClick: () => setExpanded((prevExpanded) => !prevExpanded),
+                })} size={20} />
+            </div>
+            <section {...getCollapseProps()}>
+              <div className="flex items-center justify-between mt-4">
+                <div className="flex gap-7">
+                  <input type="checkbox" name="checkbox" id="" />
+                  <span className="text-sm text-black/70">Armani</span>
+                </div>
+                <span className='font-poppins'>{products && products.filter(i=> i.brand === 'Armani').length}</span>
+              </div>
+              <div className="flex items-center justify-between mt-2">
+                <div className="flex gap-7">
+                  <input type="checkbox" name="checkbox" id="" />
+                  <span className="text-sm text-black/70">Nike</span>
+                </div>
+                <span className='font-poppins'>{products && products.filter(i=> i.brand === 'Nike').length}</span>
+              </div>
+              <div className="flex items-center justify-between mt-2">
+                <div className="flex gap-7">
+                  <input type="checkbox" name="checkbox" id="" />
+                  <span className="text-sm text-black/70">Adidas</span>
+                </div>
+                <span className='font-poppins'>{products && products.filter(i=> i.brand === 'Adidas').length}</span>
+              </div>
+              <div className="flex items-center justify-between mt-2">
+                <div className="flex gap-7">
+                  <input type="checkbox" name="checkbox" id="" />
+                  <span className="text-sm text-black/70">Supreme</span>
+                </div>
+                <span className='font-poppins'>{products && (products.filter(i=> i.brand === 'Supreme')).length}</span>
+              </div>
+              <div className="flex items-center justify-between mt-2">
+                <div className="flex gap-7">
+                  <input type="checkbox" name="checkbox" id="" />
+                  <span className="text-sm text-black/70">Essentials</span>
+                </div>
+                <span className='font-poppins'>{products && (products.filter(i=> i.brand === 'Essentials')).length}</span>
+              </div>
+              <div className="flex items-center justify-between mt-2">
+                <div className="flex gap-7">
+                  <input type="checkbox" name="checkbox" id="" />
+                  <span className="text-sm text-black/70">OFF-WHITE</span>
+                </div>
+                <span className='font-poppins'>{products && (products.filter(i=> i.brand === 'OFF-WHITE')).length}</span>
+              </div>
+              <div className="flex items-center justify-between mt-2">
+                <div className="flex gap-7">
+                  <input type="checkbox" name="checkbox" id="" />
+                  <span className="text-sm text-black/70">Louis Vuitton</span>
+                </div>
+                <span className='font-poppins'>{products && (products.filter(i=> i.brand === 'Louis Vuitton')).length}</span>
+              </div>
+              <div className="flex items-center justify-between mt-2">
+                <div className="flex gap-7">
+                  <input type="checkbox" name="checkbox" id="" />
+                  <span className="text-sm text-black/70">Bape</span>
+                </div>
+                <span className='font-poppins'>{products && (products.filter(i=> i.brand === 'Bape')).length}</span>
+              </div>
+              <div className="flex items-center justify-between mt-2">
+                <div className="flex gap-7">
+                  <input type="checkbox" name="checkbox" id="" />
+                  <span className="text-sm text-black/70">Burberry</span>
+                </div>
+                <span className='font-poppins'>{products && (products.filter(i=> i.brand === 'Burberry')).length}</span>
+              </div>
+              <div className="flex items-center justify-between mt-2">
+                <div className="flex gap-7">
+                  <input type="checkbox" name="checkbox" id="" />
+                  <span className="text-sm text-black/70">Mulberry</span>
+                </div>
+                <span className='font-poppins'>{products && (products.filter(i=> i.brand === 'Mulberry')).length}</span>
+              </div>
+              <div className="flex items-center justify-between mt-2">
+                <div className="flex gap-7">
+                  <input type="checkbox" name="checkbox" id="" />
+                  <span className="text-sm text-black/70">Michael Kors</span>
+                </div>
+                <span className='font-poppins'>{products && (products.filter(i=> i.brand === 'Michael Kors')).length}</span>
+              </div>
+            </section>
+
+
+            
             
             </div>
             </div>
             {/*  */}
-            <div className="py-10 w-full col-span-3 md:col-span-2">
+            <div className="py-10 w-full col-span-3 lg:col-span-2">
             <div className="w-full">
             <Box className='w-full lg:w-[50%]' >
             <FormControl fullWidth>
@@ -97,13 +216,17 @@ const CollectionItem = () => {
             </Box>
             </div>
             {/*  */}
-
+            {loading ? <div className='w-full mx-auto mt-20'>
+              <Spinner  />
+            </div> : products.length > 0 ? <>
             <div className="w-full grid grid-cols-1  sm:grid-cols-2 lg:grid-cols-3 gap-y-[4rem] gap-x-10 mt-10">
             {products?.map((product,index)=>(
                 <Card key={index} product={product}  height='20rem' />
 
             ))}
             </div>
+            </> : <></>}
+            
             </div>
             {/*  */}
 
