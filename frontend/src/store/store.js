@@ -22,7 +22,7 @@ const productSlice = createSlice({
             state.products = []
         },
         SingleProduct(state, action){
-            state.products =action.payload
+            state.product =action.payload
             state.loading = false
         },
         // newProduct(state, action){
