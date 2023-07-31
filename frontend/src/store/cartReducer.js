@@ -19,22 +19,40 @@ const cartSlice = createSlice({
             const item = action.payload
             const existItem = state.items.find(p => p._id === item._id)
 
-            if(existItem) {
-                state.items = state.items.map((x) =>
-                  x._id === existItem._id ? item : x
-                );
-              } else {
-                state.items = [...state.items, item];
+            if(!existItem){
+              const product = {
+                _id:item._id,
+                name:item.name,
+                price:item.price,
+                image:item.image,
+                qty:1
               }
+              state.items = [...state.items, product]
+            }else{
+              existItem.qty++
+            }
+
         
             localStorage.setItem('cart',JSON.stringify(state.items))
             
         },
+
+        decreaseQTY(state,action){
+          const item = action.payload
+          const existItem = state.items.find(p => p._id === item._id)
+          
+          existItem.qty--
+
+            if(existItem.qty < 1){
+              state.items = state.items.filter(p => p._id!== item._id)
+            }
+
+            localStorage.setItem('cart',JSON.stringify(state.items))
+        },
         removeItem(state, action){
-            // const id = action.payload
-            // const exist = state.items.find(p => p.id === id)
+            const id = action.payload
             // if(exist.quantity === 1){
-                state.items = state.items.filter(item => item._id !== action.payload)
+                state.items = state.items.filter(item => item._id !== id)
                 
                 localStorage.setItem('cart',JSON.stringify(state.items))
 

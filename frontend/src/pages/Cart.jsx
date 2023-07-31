@@ -4,13 +4,23 @@ import { Link } from 'react-router-dom'
 import {SlArrowRight} from 'react-icons/sl'
 import {IoIosArrowForward,IoIosArrowBack} from 'react-icons/io'
 import {BsTrash} from 'react-icons/bs'
-import { useSelector} from 'react-redux'
+import { useDispatch,useSelector } from 'react-redux'
+import { addCart,decreaseCart, removeCart } from '../store/actions/cartActions'
 // import 'checkout.styles.scss'
 
 
 const Cart = () => {
+    const dispatch = useDispatch()
     const {items}  = useSelector(state => state.cart)
-    const total = items.reduce((acc, item) => acc + item.price * item.quantity,0 )
+    const total = items.reduce((acc, item) => acc + item.price * item.qty,0 )
+
+    const increase=(product)=>{
+        dispatch(addCart(product))
+    }
+    const decrease=(product)=>{
+        dispatch(decreaseCart(product))
+    }
+
   return (
     <>
         <Navbar />
@@ -47,7 +57,8 @@ const Cart = () => {
                 <tr>
                     <td className='md:w-[45%]'>
                         <div className="flex items-center px-4 py-5 gap-4 w-full">
-                            <BsTrash size={20} className="text-red-500 text-xl font-semibold" />
+                            <BsTrash onClick={()=>dispatch(removeCart(item.
+                            _id)) }  className="text-red-500 font-semibold cursor-pointer text-2xl" />
                             <img src={item.image} className="w-20 h-20 object-cover hidden lg:block" alt={item._id} />
                             <div className="ml-4">
                                 <p className="text-sm font-semibold tracking-[2px] text-gray-500">{item.name}</p>
@@ -58,7 +69,7 @@ const Cart = () => {
                        R {item.price}
                     </td>
                     <td className='flex justify-center mt-4 text-center gap-2 items-center'>
-                       <IoIosArrowBack /> 3 <IoIosArrowForward />
+                       <IoIosArrowBack className='text-2xl cursor-pointer' onClick={()=>decrease(item) }   /> {item.qty} <IoIosArrowForward className='text-2xl cursor-pointer' onClick={()=>increase(item) } />
                     </td>
                     <td className='text-center'>
                         $56.00
@@ -68,7 +79,7 @@ const Cart = () => {
             ))}
             </table>
             </div>
-            <h4 className="mt-20">Total Price :R 579</h4>
+            <h4 className="mt-20">Total Price :R {total}</h4>
 
             </div>
 

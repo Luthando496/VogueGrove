@@ -1,16 +1,15 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import {AiFillHeart} from 'react-icons/ai'
+import { useDispatch } from 'react-redux'
+import { addCart } from '../store/actions/cartActions'
 
 const Card = ({product,height}) => {
   const {image,name,price,_id} = product
-  const addTofavoriteHandler =()=>{
-    console.log(product)
-
-  }
-  const addToCartHandler=(product)=>{
-
-
+  const dispatch = useDispatch()
+  
+  const addToCartHandler=(ro)=>{
+      dispatch(addCart(ro))
   }
   return (
         <div className="w-full ">
@@ -20,7 +19,7 @@ const Card = ({product,height}) => {
         </Link>
           {/* <span className="absolute top-4 left-4 p-2 bg-sky-700 text-white font-thin">- 20% off</span> */}
           <div className="absolute group-hover:translate-y-[0%] duration-700 translate-y-[100%] text-center bottom-0 w-full h-[50px] bg-black/40 ">
-            <button onClick={addToCartHandler} className="text-center w-full h-full mb-2 text-base font-jost text-amber-500 bg-black/60  tracking-[3px] font-thin px-1">Add to Cart</button>
+            <button onClick={()=>addToCartHandler(product)} className="text-center w-full h-full mb-2 text-base font-jost text-amber-500 bg)-black/60  tracking-[3px] font-thin px-1">Add to Cart</button>
           </div>
         </div>
         <div className="card-body text-center mt-4 space-y-3">
