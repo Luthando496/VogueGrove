@@ -65,7 +65,7 @@ const ProductScreen = () => {
                 thumbWidth={60}
                 className="productCarousel"
             >
-                {products.images?.map((img,index) => (
+                {product.images?.map((img,index) => (
                     <img
                         key={index}
                         src={img?.url}
@@ -89,8 +89,8 @@ const ProductScreen = () => {
         <span className="text-sky-500 ">Nike</span>
      </div>
      <hr />
-     <h1 className="text-4xl text-black/75 mt-4">{products.brand}</h1>
-                <p className="py-6 text-black uppercase text-xl">{products.category}</p>
+     <h1 className="text-4xl text-black/75 mt-4">{product.brand}</h1>
+                <p className="py-6 text-black uppercase text-xl">{product.category}</p>
                 <div className="flex justify-between ">
                     <p className="text-xl text-gray-700">Price : ZAR 789.00</p>
                     <span className="text-xl text-green-500">23% off</span>
@@ -100,7 +100,7 @@ const ProductScreen = () => {
 
                 <div className="w-full grid grid-cols-5 gap-2 mt-10 items-center">
                     <div className="col-span-4 w-full">
-                        <button onClick={()=> addCartHandler(products)} className="bg-black hover:bg-orange-400 rounded-md hover:shadow-2xl duration-700 hover:translate-y-2 w-full uppercase px-3 py-4  text-white text-sm font-heebo text-center">
+                        <button onClick={()=> addCartHandler(product)} className="bg-black hover:bg-orange-400 rounded-md hover:shadow-2xl duration-700 hover:translate-y-2 w-full uppercase px-3 py-4  text-white text-sm font-heebo text-center">
                             Add To cart
                         </button>
                     </div>
