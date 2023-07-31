@@ -28,11 +28,6 @@ const ProductScreen = () => {
         dispatch(singleProduct(id))
     },[dispatch])
 
-    if(!product){
-        return(
-            <div>No Product Available...</div>
-        )
-    }
 
     const addCartHandler = (product) => {
         dispatch(addCart(product))
@@ -48,15 +43,15 @@ const ProductScreen = () => {
     <Link to='/' className='text-gray-500  text-sm flex gap-2 items-center' >
         Home <SlArrowRight className='text-gray-500 mt-[2px]' size={12} />
     </Link>
-    <Link to={`/collection/${product.category}`} className='text-gray-500  text-sm flex gap-2 items-center' >
-    {product.category} <SlArrowRight className='text-gray-500 mt-[2px]' size={12} />
+    <Link to={`/collection/${product && product.category}`} className='text-gray-500  text-sm flex gap-2 items-center' >
+    {product && product.category} <SlArrowRight className='text-gray-500 mt-[2px]' size={12} />
     </Link>
     <Link to='/' className='text-gray-500  text-sm flex gap-2 items-center' >
-    {product.name}
+    {product && product.name}
     </Link>
     </div>
 
-    {loading ? <Spinner /> : error ? <></> : (<div className="flex flex-wrap gap-4 mt-10 px-3">
+    {loading ? <Spinner /> : error ? <>An error</> : product ?  (<div className="flex flex-wrap gap-4 mt-10 px-3">
     <article className="text-white lg:basis-[60%] text-[20px] col-span-1 w-full ">
             <Slider
                 infiniteLoop={true}
@@ -78,21 +73,20 @@ const ProductScreen = () => {
     </article>
 
     <article className="w-full lg:basis-[35%] col-span-1">
-     <h1 className="font-poppins text-xl lg:text-2xl text-zinc-400">Comfort mini denim skirt</h1>
+     <h1 className="font-poppins text-xl lg:text-2xl text-zinc-400">{product.name}</h1>
 
      <div className="flex my-4 gap-4">
         <span className="text-gray-700 font-bold text-base line-through">R 300</span>
-        <span className="text-red-500 font-roboto text-xl font-semibold">R {products.price}</span>
+        <span className="text-red-500 font-roboto text-xl font-semibold">R {product.price}</span>
      </div>
      <div className="flex my-1 gap-[8px]">
         <span className="text-black">By</span>
-        <span className="text-sky-500 ">Nike</span>
+        <span className="text-sky-500 ">{product.brand}</span>
      </div>
      <hr />
-     <h1 className="text-4xl text-black/75 mt-4">{product.brand}</h1>
                 <p className="py-6 text-black uppercase text-xl">{product.category}</p>
                 <div className="flex justify-between ">
-                    <p className="text-xl text-gray-700">Price : ZAR 789.00</p>
+                    <p className="text-xl text-gray-700">Price : ZAR {product.price}</p>
                     <span className="text-xl text-green-500">23% off</span>
                 </div>
                 <p className="text-black/70 pt-2 text-md">incl. of taxes</p>
@@ -131,14 +125,14 @@ const ProductScreen = () => {
 
     </article>        
 
-    </div>)}
+    </div>):<>No Product</>}
     
 
 
     </section>
     <hr />
     <section className="w-full flex justify-center my-7 items-center px-4 md:px-10 lg:px-14">
-        <p className="text-base text-black/80 leading-[1.9] tracking-[2px] font-jost font-semibold">{product.description}</p>
+        <p className="text-base text-black/80 leading-[1.9] tracking-[2px] font-jost font-semibold">{product && product.description}</p>
     </section>
     <hr />
     <div className="flex w-full justify-center gap-8 mb-12  mt-20 ">
