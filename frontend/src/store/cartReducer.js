@@ -11,6 +11,8 @@ const addDecimals =(number)=>{
 }
 
 
+
+
 const cartSlice = createSlice({
     name:'cart',
     initialState:{items:cartStore,shippingAddress:shipStore,PaymentMethod:'PayPal'},

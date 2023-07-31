@@ -7,7 +7,10 @@ import {BsTrash} from 'react-icons/bs'
 import { useDispatch,useSelector } from 'react-redux'
 import { addCart,decreaseCart, removeCart } from '../store/actions/cartActions'
 // import 'checkout.styles.scss'
-
+let ZAR = new Intl.NumberFormat('en-za', {
+    style: 'currency',
+    currency: 'ZAR',
+});
 
 const Cart = () => {
     const dispatch = useDispatch()
@@ -66,20 +69,20 @@ const Cart = () => {
                         </div>
                     </td>
                     <td className='text-center'>
-                       R {item.price}
+                        {ZAR.format(item.price)}
                     </td>
                     <td className='flex justify-center mt-4 text-center gap-2 items-center'>
                        <IoIosArrowBack className='text-2xl cursor-pointer' onClick={()=>decrease(item) }   /> {item.qty} <IoIosArrowForward className='text-2xl cursor-pointer' onClick={()=>increase(item) } />
                     </td>
                     <td className='text-center'>
-                        $56.00
+                     {ZAR.format(item.price  * item.qty)}
                     </td>
                 </tr>
             </tbody>
             ))}
             </table>
             </div>
-            <h4 className="mt-20">Total Price :R {total}</h4>
+            <h4 className="mt-20">Total Price : {ZAR.format(total)}</h4>
 
             </div>
 
