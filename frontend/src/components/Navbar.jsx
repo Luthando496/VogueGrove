@@ -20,26 +20,26 @@ const Navbar = () => {
         </Link>
         {/*  */}
 
-        <ul className="hidden md:flex items-center gap-10">
+        <ul className="flex items-center gap-4  lg:gap-10">
             <li>
-            <Link to='/' className="text-black uppercase font-heebo md:text-xl hover:border-b pb-1 duration-700 hover:border-b-teal-600 tracking-[2px]">Home</Link>
+            <Link to='/' className="text-black text-[9px] uppercase font-heebo md:text-xl hover:border-b pb-1 duration-700 hover:border-b-teal-600 tracking-[2px]">Home</Link>
             </li>
             <li>
-            <Link to='/about-us' className="text-black uppercase font-heebo md:text-xl hover:border-b pb-1 duration-700 hover:border-b-teal-600 tracking-[2px]">About</Link>
+            <Link to='/about-us' className="text-black text-[9px] uppercase font-heebo md:text-xl hover:border-b pb-1 duration-700 hover:border-b-teal-600 tracking-[2px]">About</Link>
             </li>
             {/* <li>
             <Link to='/contact' className="text-black uppercase font-heebo md:text-xl hover:border-b pb-1 duration-700 hover:border-b-teal-600 tracking-[2px]">Contact</Link>
             </li> */}
             <li>
-            <Link to='/collections' className="text-black uppercase font-heebo md:text-xl hover:border-b pb-1 duration-700 hover:border-b-teal-600 tracking-[2px]">Collections</Link>
+            <Link to='/collections' className="text-black text-[9px] uppercase font-heebo md:text-xl hover:border-b pb-1 duration-700 hover:border-b-teal-600 tracking-[2px]">Collections</Link>
             </li>
         </ul>
         {/*  */}
 
         <div className="flex items-center gap-4">
         <div className="fle relative">
-            <AiOutlineShopping className='cursor-pointer' onClick={()=> navigate('/cart')} size={55} />
-            <span className="rounded-full py-[2px] pl-[7px] pr-[8px] bg-yellow-400 text-white absolute -top-3 right-1">{items.length}</span>
+            <AiOutlineShopping className='cursor-pointer' size={30}  onClick={()=> navigate('/cart')}  />
+            <span className="text-base rounded-full py-[2px] pl-[7px] pr-[8px] bg-yellow-400 text-white absolute -top-3 right-1">{items.length}</span>
         </div>
         {/* <div className="fle">
             <AiOutlineHeart className='cursor-pointer' onClick={()=> navigate('/wishlist')} size={25} />

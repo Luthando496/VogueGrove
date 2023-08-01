@@ -12,6 +12,7 @@ import Spinner from '../components/Spinner'
 import { addCart } from '../store/actions/cartActions'
 
 
+
 const ProductScreen = () => {
     const [qty, setQty] = useState(1)
     const {id} = useParams()

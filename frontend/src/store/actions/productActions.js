@@ -3,13 +3,18 @@ import {productAction} from '../store.js'
 import axios from 'axios'
 
 
-export const getProducts = () =>
+export const getProducts = (pa) =>
     async dispatch =>{
         try{
             dispatch(productAction.allProductsRequest())
-            const {data} = await axios.get('/api/products')
+            const {data} = await axios.get(`/api/products?page=${pa}`)
 
-            dispatch(productAction.ProductsSuccess(data))
+            const {page,products} = data
+
+            
+
+            dispatch(productAction.ProductsSuccess(products))
+            dispatch(productAction.pageLoad(page))
 
         }catch(err){
             console.log(err)

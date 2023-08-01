@@ -4,6 +4,12 @@ import {AiFillHeart} from 'react-icons/ai'
 import { useDispatch } from 'react-redux'
 import { addCart } from '../store/actions/cartActions'
 
+let ZAR = new Intl.NumberFormat('en-za', {
+  style: 'currency',
+  currency: 'ZAR',
+});
+
+
 const Card = ({product,height}) => {
   const {image,name,price,_id} = product
   const dispatch = useDispatch()
@@ -11,6 +17,7 @@ const Card = ({product,height}) => {
   const addToCartHandler=(ro)=>{
       dispatch(addCart(ro))
   }
+
   return (
         <div className="w-full ">
         <div className={`card-image group  h-[${height}] relative overflow-hidden`}>
@@ -24,7 +31,7 @@ const Card = ({product,height}) => {
         </div>
         <div className="card-body text-center mt-4 space-y-3">
           <h3 className="text-xl font-light text-light-700">{name}</h3>
-          <p className="text-sky-900 font-semibold text-xl">R{price}</p>
+          <p className="text-sky-900 font-semibold text-xl">R{ZAR.format(price)}</p>
         </div>
       </div>
   )

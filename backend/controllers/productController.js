@@ -4,13 +4,24 @@ import Product from '../models/productModel.js'
 
 
 // fetches All Products
-// @route Get api/poducts
+// @route Get api/products
 // @access Public
 export const getAllProducts = asyncHandler(async(req,res)=>{
+// PAGINATION
+    const page = parseInt(req.query.page) || 1
+    const limit = parseInt(req.query.limit) || 8
+    const skip = (page - 1) * limit
+    const products = await Product.find().skip(skip).limit(limit)
 
-    const products = await Product.find()
+    if(req.query.page){
+        const numProducts = await Product.countDocuments()
+        if(skip >= numProducts){
+            res.status(404)
+            throw new Error('This Page does not exist')
+        } 
+    }
     
-    res.json(products)
+    res.json({page:page,products})
 })
 
 

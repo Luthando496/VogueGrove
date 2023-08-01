@@ -7,14 +7,18 @@ import {orderReducer} from './orderReducer'
 
 const productSlice = createSlice({
     name:'product',
-    initialState:{products:[],loading:false,error:null, product:null},
+    initialState:{products:[],loading:false,error:null, product:null,page:null,totalPages:6},
     reducers:{
         allProductsRequest(state, action){
             state.loading =true
         },
         ProductsSuccess(state, action){
-            state.products =action.payload
+            state.products = action.payload
+            state.page = action.payload
             state.loading = false
+        },
+        pageLoad(state,action){
+            state.page = action.payload
         },
         ProductsFail(state, action){
             state.er =action.payload

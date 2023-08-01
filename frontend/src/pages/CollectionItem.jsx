@@ -16,25 +16,28 @@ import {FcFilledFilter} from 'react-icons/fc'
 import {BiFilter} from 'react-icons/bi'
 import {AiOutlineMinus} from 'react-icons/ai'
 import { useCollapse } from 'react-collapsed'
+import Pagination from '@mui/material/Pagination'
 
 
 
 
 const CollectionItem = () => {
+    const [search, setSearch] = useState('')
     const [age, setAge] = useState('');
-    const {products,loading,error} = useSelector(state => state.prod)
+    const {products,totalPages,loading,error,page} = useSelector(state => state.prod)
+    const [pageNumer, setPage] = useState(page || 1)
     const dispatch = useDispatch()
     const [isExpanded, setExpanded] = useState(true)
     const [isBrand, setIsBrand] = useState(true)
-  const { getCollapseProps, getToggleProps } = useCollapse({ isExpanded,duration:200 })
+    const { getCollapseProps, getToggleProps } = useCollapse({ isExpanded,duration:200 })
     const {id} = useParams()
 
-    const bbh = products && products.filter((item)=> item.brand === 'Nike')
-    console.log(bbh)
 
-  const handleChange = (event) => {
-    setAge(event.target.value);
-  };
+    const bbh = products && products.filter((item)=> item.brand === 'Nike')
+
+  // const handleChange = (event) => {
+  //   setAge(event.target.value);
+  // };
 
   useEffect(()=>{
     if(id == 'all'){
@@ -44,7 +47,10 @@ const CollectionItem = () => {
 
   },[dispatch])
 
-
+  const handleChange=(e,page)=>{
+    setPage(page)
+    dispatch(getProducts(page))
+  }
 
   return (
     <>
@@ -233,6 +239,7 @@ const CollectionItem = () => {
 
             </div>
         </section>
+        {id == 'all' && <Pagination count={totalPages} onChange={handleChange} page={pageNumer} variant="outlined" color="primary" className='w-[80%] mx-auto py-[1rem] bg-rose-600'   />}
     </>
   )
 }
