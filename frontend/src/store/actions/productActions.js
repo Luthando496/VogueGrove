@@ -22,6 +22,12 @@ export const getProducts = (pa) =>
         }
 }
 
+export const LowName =()=>{
+    dispatch=>{
+        dispatch(productAction.nameLow())
+    }
+}
+
 
 export const singleProduct = (id) =>
 async dispatch =>{

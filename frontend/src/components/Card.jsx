@@ -31,7 +31,7 @@ const Card = ({product,height}) => {
         </div>
         <div className="card-body text-center mt-4 space-y-3">
           <h3 className="text-xl font-light text-light-700">{name}</h3>
-          <p className="text-sky-900 font-semibold text-xl">R{ZAR.format(price)}</p>
+          <p className="text-sky-900 font-semibold text-xl">{ZAR.format(price)}</p>
         </div>
       </div>
   )

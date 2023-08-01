@@ -10,7 +10,7 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';    
 import Card from '../components/Card'
 import {useDispatch,useSelector} from 'react-redux'
-import {getCollection,getProducts} from '../store/actions/productActions'
+import {LowName, getCollection,getProducts} from '../store/actions/productActions'
 import {useParams} from 'react-router-dom'
 import {FcFilledFilter} from 'react-icons/fc'
 import {BiFilter} from 'react-icons/bi'
@@ -33,7 +33,7 @@ const CollectionItem = () => {
     const {id} = useParams()
 
 
-    const bbh = products && products.filter((item)=> item.brand === 'Nike')
+    // const bbh = products && products.filter((item)=> item.brand === 'Nike')
 
   // const handleChange = (event) => {
   //   setAge(event.target.value);
@@ -42,14 +42,25 @@ const CollectionItem = () => {
   useEffect(()=>{
     if(id == 'all'){
       dispatch(getProducts())
+    }else{
+      dispatch(getCollection(id))
+
     }
-    dispatch(getCollection(id))
 
   },[dispatch])
 
   const handleChange=(e,page)=>{
     setPage(page)
     dispatch(getProducts(page))
+  }
+
+  const changeSorting =(e)=>{
+    console.log(e.target.value)
+    const name = e.target.value
+    if(name == 'a'){
+       dispatch(LowName())
+    }
+
   }
 
   return (
@@ -211,11 +222,11 @@ const CollectionItem = () => {
                 id="demo-simple-select"
                 value={age}
                 label="Age"
-                onChange={handleChange}
+                onChange={changeSorting}
                 >
                 <MenuItem value={10}>Low To High</MenuItem>
                 <MenuItem value={20}>High To Low</MenuItem>
-                <MenuItem value={30}>A to Z</MenuItem>
+                <MenuItem value={'a'}>A to Z</MenuItem>
                 <MenuItem value={30}>Z to A</MenuItem>
                 </Select>
             </FormControl>

@@ -29,6 +29,10 @@ const productSlice = createSlice({
             state.product =action.payload
             state.loading = false
         },
+        nameLow(state,action){
+            state.products = state.products.sort((a,b)=>a.name.toLowerCase() - b.name.toLowerCase())
+
+        }
         // newProduct(state, action){
         //     state.newProd = action.payload
         //     state.proErr = null
